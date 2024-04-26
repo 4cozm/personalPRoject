@@ -1,0 +1,64 @@
+body{
+    max-width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.container{ /*content를 담는 컨테이너*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: thistle;
+    width: 80vw;
+    height: auto;
+} 
+.content{ /*영화 배너 & 정보 & 평점*/
+    width:20vw;
+    height: auto;
+    margin:1vw;
+    cursor: pointer;
+}
+.content>img{
+    max-width: 20vw;
+    height: auto;
+    z-index:-1;
+}
+.title{
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.199);
+    border-radius: 2px;
+}
+.overview{
+    overflow-y: auto;
+    max-height:100px;
+}
+.overview::-webkit-scrollbar {
+    display: none; /* 스크롤바를 숨기는 유사클래스. */
+  }  
+.searchContainer{ /*검색 기능이 있는 바*/
+    background-color: teal;
+
+}
+.intro{ /* 인기영화 사이트 구현 배너*/
+    display: flex;
+    background-color: aqua;
+    width: 80vw;
+    height: 200px;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.upperBar{
+    position: fixed;
+    width: 100vw;
+    height: 30px;
+    background-color:azure ;
+    left:0px;
+    padding-left: 10px;
+    padding-top:5px;
+    border-bottom: 1px solid black;
+}
+.voidID{
+    display: none;
+}

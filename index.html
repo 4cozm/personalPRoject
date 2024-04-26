@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인기영화 순위</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="upperBar">인기영화</div>
+    <div class="intro">
+      <p>인기영화 사이트 구현</p>
+      <p>TMDB의 API를 이용한 데이터 및 이미지를 사용합니다</p>
+      <p>CSS 가 구려서 죄송합니다.</p>
+    </div>
+    <form class="searchContainer">
+      <input id="search" type="text" placeholder="영화검색" />
+      <button id="searchBtn" type="button">검색</button>
+    </form>
+
+    <ol class="container">
+    </ol>
+  </body>
+  <script rel="script" src="main.js"></script>
+</html>
+
+<!--카드에는 title(제목), overview(내용 요약), poster_path(포스터 이미지 경로), vote_average(평점) 이렇게 4가지 정보가 필수로 들어갑니다.-->
