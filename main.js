@@ -9,7 +9,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-US&page=1', {
 .then(response => response.json())
 .then(data => {
   movieJson = data.results;
-  createPoster(movieJson); //여긴 잘 받아지는데
+  createPoster(movieJson); 
   console.log(movieJson);
 })
 .catch(error => console.error('Error fetching data:', error));
@@ -19,7 +19,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-US&page=1', {
 const btn = document.querySelector("#searchBtn"); //버튼
 btn.addEventListener("click",()=>{
   const search = document.querySelector("#search").value;
-  changeToSearch(search,movieJson); //여긴 왜 배열로 전달안돼지
+  changeToSearch(search,movieJson); 
 });
 
 
@@ -45,7 +45,7 @@ let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데�
     vote_average.textContent="평점:  "+data.vote_average;
     console.log(data.original_title)
 
-    const id = document.createElement("p"); //ID값
+    const id = document.createElement("p"); //ID값 CSS에서 display:none;으로 숨김처리
     id.classList.add("voidID");
     id.textContent=data.id;
 
