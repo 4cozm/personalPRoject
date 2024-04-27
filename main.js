@@ -10,7 +10,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-US&page=1', {
 .then(data => {
   movieJson = data.results;
   createPoster(movieJson); 
-  console.log(movieJson);
 })
 .catch(error => console.error('Error fetching data:', error));
 
@@ -34,7 +33,7 @@ let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데�
 
     const title = document.createElement("p"); //영화 제목
     title.classList.add("title");
-    title.textContent=data.original_title;
+    title.textContent=data.title;
 
     const overview = document.createElement("p"); //요약
     overview.classList.add("overview");
@@ -43,7 +42,6 @@ let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데�
     const vote_average = document.createElement("p"); //평균평점
     vote_average.classList.add("vote_average");
     vote_average.textContent="평점:  "+data.vote_average;
-    console.log(data.original_title)
 
     const id = document.createElement("p"); //ID값 CSS에서 display:none;으로 숨김처리
     id.classList.add("voidID");
@@ -57,34 +55,37 @@ let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데�
     document.querySelector(".container").appendChild(content);
     
   });
-  idAlert();
+  idAlert(); //ID를 출력하는 이벤트를 바인딩하는 작업 forEach문이 끝나고 한번에 바인딩
 };
 
+/* 강의에서 배운 방법
+const tempHtml=<div class="content">  
+  <img class="poster_path" src="https://image.tmdb.org/t/p/w500/${data.poster_path}">
+  <p class="title">${data.title}</p>
+  <p class="overview">줄거리:${data.overview}</p>
+  <p class="vote_average">평점:${data.vote_average}</p>
+  <p class="voidID">${data.id}</p>
+</div>;
+*/
 let changeToSearch = function(input,JSON){ //버튼입력되면 문자열데이터 받아옴 Json.results의 결과를 토대로 데이터 처리
   const content = document.querySelectorAll(".content"); //기존있는 포스터 전부 불러와
   content.forEach(content =>{content.remove();});
   let searchResult=[]; //검색결과와 일치하는 영화 배열 인덱스만 받음
-  console.log(`받은 인풋 데이터 ${input} , 받은 JSON.results ${JSON}`);
 
   JSON.forEach(function(array) {
-    const title = array.original_title.toLowerCase();
+    const title = array.title.toLowerCase();
     if (title.includes(input.toLowerCase())) {
       searchResult.push(array);
     }
   });
-  
-  console.log("일치하는 데이터"+searchResult);
   createPoster(searchResult);
 }
 
 let idAlert= function(){
-  console.log("호출됨");
   const ContentSelect =  document.querySelectorAll(".content");
   const alertArray = Array.from(ContentSelect); //querySelectorAll로 받은 NodeList를 배열로 바꿈
-  console.log(alertArray);
 alertArray.forEach(array=>{
   array.addEventListener("click",function(event){
-    console.log("클릭!!");
     const clicked=event.target; // 클릭된 타겟 확보
     const findID=clicked.closest('.content').querySelector(".voidID").textContent;
     alert("ID:"+findID);
@@ -100,4 +101,8 @@ form.addEventListener("submit",event =>{
   btn.click();
 })
 
-//웹사이트 랜딩후 검색창 자동 포커싱 -> 실패!!!
+//웹사이트 랜딩후 검색창 자동 포커싱 ->실패
+window.addEventListener('load',()=>{
+  const searchInput = document.querySelector("#search");
+  searchInput.focus;
+});
