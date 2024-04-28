@@ -21,7 +21,6 @@ btn.addEventListener("click",()=>{
   changeToSearch(search,movieJson); 
 });
 
-
 let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데이터를 추출해 복제된 HTML을 생성
   JSON.forEach(function(data){
     const content = document.createElement("div");
@@ -59,17 +58,21 @@ let createPoster = function(JSON){ //Json.results을 받아오면 원하는 데�
 };
 
 /* 강의에서 배운 방법
-const tempHtml=<div class="content">  
+  const makeContaniner= document.createElement("div");
+  makeContainer.classList.add("content");
+  
+  const tempHtml=`
   <img class="poster_path" src="https://image.tmdb.org/t/p/w500/${data.poster_path}">
   <p class="title">${data.title}</p>
   <p class="overview">줄거리:${data.overview}</p>
   <p class="vote_average">평점:${data.vote_average}</p>
   <p class="voidID">${data.id}</p>
-</div>;
+`
+makeContainer.appenChild(tempHtml);
 */
 let changeToSearch = function(input,JSON){ //버튼입력되면 문자열데이터 받아옴 Json.results의 결과를 토대로 데이터 처리
-  const content = document.querySelectorAll(".content"); //기존있는 포스터 전부 불러와
-  content.forEach(content =>{content.remove();});
+  const content = document.querySelectorAll(".content"); //기존있는 포스터를 NodeList 형으로 받아옴
+  content.forEach(content =>{content.remove();}); //크로미늄에선 유사배열 내부에도 forEach가 작동하긴함 //그냥 .container의 innerHtml=''; 처리해도됨
   let searchResult=[]; //검색결과와 일치하는 영화 배열 인덱스만 받음
 
   JSON.forEach(function(array) {
